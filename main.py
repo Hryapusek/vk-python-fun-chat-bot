@@ -8,6 +8,7 @@ import auth
 from cock_command import CockSizeCommand
 from chat_stats_command import ChatStatsCommand
 from user_stats_command import UserStatsCommand
+from ask_command import AskCommand
 
 logger = logging.getLogger("main")
 commands = []
@@ -80,7 +81,8 @@ def init_commands(vk_session: vk_api.VkApi):
     statsCmd = UserStatsCommand(statistics)
     infoCmd = ChatStatsCommand(statistics)
     cockCmd = CockSizeCommand()
-    commands = [statsCmd, infoCmd, cockCmd]
+    askCmd = AskCommand()
+    commands = [statsCmd, infoCmd, cockCmd, askCmd]
 
 
 CHAT_ID = int(sys.argv[len(sys.argv) - 1])

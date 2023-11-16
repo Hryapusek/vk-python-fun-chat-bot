@@ -160,4 +160,5 @@ cython_debug/
 #.idea/
 
 # vk_common dir
-vk_common
+vk_common/token.txt
+vk_common/stats.txt

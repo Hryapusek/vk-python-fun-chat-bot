@@ -14,12 +14,12 @@ Commands are:
 - `/cock`
 
 ### Quick start
-You can obtain the token on [vkhost.github.io](https://vkhost.github.io)
-Start with
+You can obtain the token on [vkhost.github.io](https://vkhost.github.io).  
+Start bot with
 ```python
-pyhton3 main.py [token] CHAT_ID
+pyhton3 main.py token CHAT_ID
 ```
-or if you put token in vk_common/token.txt.
+or if you have put token in vk_common/token.txt.
 ```python
 pyhton3 main.py CHAT_ID
 ```

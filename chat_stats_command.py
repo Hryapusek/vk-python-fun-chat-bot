@@ -1,0 +1,36 @@
+import vk_api
+from vk_api import longpoll
+import logging
+import stats
+from commands_utils import *
+
+class ChatStatsCommand:
+    name = "InfoCommand"
+    command_trigger = "chat_stats"
+
+    def __init__(self, statistics: stats.Stats) -> None:
+        self.statistics = statistics
+        self.logger = logging.getLogger("main")
+
+    def send_response_message(
+        self, event: longpoll.Event, vk_session: vk_api.VkApi, users_count: int
+    ):
+        self.logger.debug("User id: " + str(event.user_id))
+        self.logger.debug("Users count: " + str(users_count))
+        method_params = {
+            "random_id": 0,
+            "peer_id": event.peer_id,
+            "reply_to": event.message_id,
+            "message": "BOT MESSAGE:\nЗа последние 3 месяца "
+            + str(users_count)
+            + " людей писали в этой беседе.",
+        }
+        vk_session.method("messages.send", method_params)
+
+    def is_this_command(self, message: str) -> bool:
+        return is_command(message, self.command_trigger)
+
+    def execute(self, vk_session: vk_api.VkApi, event: longpoll.Event):
+        users_count = self.statistics.get_users_count()
+        self.logger.debug("Sending response message.")
+        self.send_response_message(event, vk_session, users_count)

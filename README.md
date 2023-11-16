@@ -17,7 +17,7 @@ Commands are:
 You can obtain the token on [vkhost.github.io](https://vkhost.github.io)
 Start with
 ```python
-pyhton3 main.py [token] CHAT_ID
+pyhton3 main.py token CHAT_ID
 ```
 or if you put token in vk_common/token.txt.
 ```python

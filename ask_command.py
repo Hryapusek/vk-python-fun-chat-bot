@@ -3,7 +3,7 @@ from vk_api import longpoll
 import logging
 from commands_utils import *
 import random
-
+import time
 
 class AskCommand:
     name = "AskCommand"
@@ -13,6 +13,7 @@ class AskCommand:
         self.logger = logging.getLogger("main")
 
     def send_response_message(self, event: longpoll.Event, vk_session: vk_api.VkApi):
+        random.seed(time.perf_counter())
         num = random.randint(0, 1)
         text = "BOT MESSAGE:\n"
         text += "Да." if num == 1 else "Нет."

@@ -17,15 +17,10 @@ class UserStatsCommand:
     ):
         self.logger.info("User id: " + str(event.user_id))
         self.logger.info("Message count: " + str(msg_count))
-        method_params = {
-            "random_id": 0,
-            "peer_id": event.peer_id,
-            "reply_to": event.message_id,
-            "message": "BOT MESSAGE:\nЗа последние 3 месяца вы отправили "
+        text = ("BOT MESSAGE:\nЗа последние 3 месяца вы отправили "
             + str(msg_count)
-            + " сообщений.",
-        }
-        vk_session.method("messages.send", method_params)
+            + " сообщений.")
+        simple_reply_to_message(vk_session, event.peer_id, event.message_id, text)
 
     def is_this_command(self, message: str) -> bool:
         return is_command(message, self.command_trigger)

@@ -17,15 +17,10 @@ class ChatStatsCommand:
     ):
         self.logger.debug("User id: " + str(event.user_id))
         self.logger.debug("Users count: " + str(users_count))
-        method_params = {
-            "random_id": 0,
-            "peer_id": event.peer_id,
-            "reply_to": event.message_id,
-            "message": "BOT MESSAGE:\nЗа последние 3 месяца "
+        text = ("BOT MESSAGE:\nЗа последние 3 месяца "
             + str(users_count)
-            + " людей писали в этой беседе.",
-        }
-        vk_session.method("messages.send", method_params)
+            + " людей писали в этой беседе.")
+        simple_reply_to_message(vk_session, event.peer_id, event.message_id, text)
 
     def is_this_command(self, message: str) -> bool:
         return is_command(message, self.command_trigger)
